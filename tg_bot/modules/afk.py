@@ -61,9 +61,9 @@ def reply_afk(bot: Bot, update: Update):
             if sql.is_afk(user_id):
                 user = sql.check_afk_status(user_id)
                 if not user.reason:
-                    res = "{} ഇപ്പോൾ കീബോർഡിൽ നിന്നും അകലെ ആണ് ".format(fst_name)
+                    res = "{} ഇപ്പോൾ കീബോർഡിൽ നിന്നും അകലെ ആണ് ! കാരണം :\n{} ".format(fst_name)
                 else:
-                    res = "{} കാരണം :\n{}".format(fst_name, user.reason)
+                    res = "{} ഇപ്പോൾ കീബോർഡിൽ നിന്നും അകലെ ആണ് ! കാരണം :\n{}. ".format(fst_name, user.reason)
                 message.reply_text(res)
 
 
