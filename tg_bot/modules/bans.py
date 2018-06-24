@@ -28,7 +28,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപഭോക്താവിനെ സൂചിപ്പിക്കുന്നതായി തോന്നുന്നില്ല .")
         return ""
 
     try:
@@ -41,11 +41,11 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("I really wish I could ban admins...")
+        message.reply_text("എനിക്ക് ADMINSനെയും ബാൻ ചെയ്യാൻ പറ്റിയിരുന്നെങ്കിലോ എന്ന് ചിന്തിച്ചുപോവുകയാണ് .")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I'm not gonna BAN myself, are you crazy?")
+        message.reply_text("താങ്കൾക്കെന്താ വട്ടുണ്ടോ ഞാൻ എന്നെ തന്നെ എങ്ങനെ ബാൻ ചെയ്യും ")
         return ""
 
     log = "<b>{}:</b>" \
@@ -59,7 +59,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("Banned!")
+        message.reply_text("ബണ്ണും പാലും കൊടുത്തു വിട്ടിട്ടുണ്ട് !")
         return log
 
     except BadRequest as excp:
@@ -71,7 +71,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
             LOGGER.warning(update)
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
-            message.reply_text("Well damn, I can't ban that user.")
+            message.reply_text("എന്തോ, എനിക്കയാളെ ബൺ കൊടുത്തുവിടാൻ പറ്റുന്നില്ല .")
 
     return ""
 
@@ -89,7 +89,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപഭോക്താവിനെ സൂചിപ്പിക്കുന്നതായി തോന്നുന്നില്ല .")
         return ""
 
     try:
@@ -102,7 +102,7 @@ def temp_ban(bot: Bot, update: Update, args: List[str]) -> str:
             raise
 
     if is_user_ban_protected(chat, user_id, member):
-        message.reply_text("I really wish I could ban admins...")
+        message.reply_text("ADMINSനെ ബാൻ ചെയ്യാൻ പറ്റിയിരുന്നെങ്കിൽ എന്ന് ഞാനിപ്പോ ചിന്തിക്കുകയാണ് .")
         return ""
 
     if user_id == bot.id:
