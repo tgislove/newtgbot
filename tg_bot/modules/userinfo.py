@@ -29,9 +29,9 @@ def about_me(bot: Bot, update: Update, args: List[str]):
                                             parse_mode=ParseMode.MARKDOWN)
     elif message.reply_to_message:
         username = message.reply_to_message.from_user.first_name
-        update.effective_message.reply_text(username + " hasn't set an info message about themselves  yet!")
+        update.effective_message.reply_text(username + " ഇയാളെക്കുറിച്ചുള്ള വിവരം ഇപ്പോൾ ലഭ്യമല്ല !")
     else:
-        update.effective_message.reply_text("You haven't set an info message about yourself yet!")
+        update.effective_message.reply_text("താങ്കളെക്കുറിച്ചുള്ള വിവരങ്ങൾ ഒന്നും ഇതുവരെയും താങ്കൾ ഇതിൽ ചേർത്തിട്ടില്ല !")
 
 
 @run_async
@@ -43,7 +43,7 @@ def set_about_me(bot: Bot, update: Update):
     if len(info) == 2:
         if len(info[1]) < MAX_MESSAGE_LENGTH // 4:
             sql.set_user_me_info(user_id, info[1])
-            message.reply_text("Updated your info!")
+            message.reply_text("താങ്കളുടെ വിവരങ്ങൾ വിജയകരമായി രേഖപ്പെടുത്തിയിരിക്കുന്നു ")
         else:
             message.reply_text(
                 "Your info needs to be under {} characters! You have {}.".format(MAX_MESSAGE_LENGTH // 4, len(info[1])))
@@ -66,9 +66,9 @@ def about_bio(bot: Bot, update: Update, args: List[str]):
                                             parse_mode=ParseMode.MARKDOWN)
     elif message.reply_to_message:
         username = user.first_name
-        update.effective_message.reply_text("{} hasn't had a message set about themselves yet!".format(username))
+        update.effective_message.reply_text("{} ഇതുവരെ അദ്ദേഹത്തെക്കുറിച്ചുള്ള വിവരങ്ങൾ ഒന്നും ചേർത്തിട്ടില്ല !".format(username))
     else:
-        update.effective_message.reply_text("You haven't had a bio set about yourself yet!")
+        update.effective_message.reply_text("നിങ്ങളെക്കുറിചുള്ള നിങ്ങളുടെ വിവരങ്ങൾ ഇതുവരെ ചേർത്തിട്ടില്ല !")
 
 
 @run_async
@@ -93,7 +93,7 @@ def set_about_bio(bot: Bot, update: Update):
                 message.reply_text("Updated {}'s bio!".format(repl_message.from_user.first_name))
             else:
                 message.reply_text(
-                    "A bio needs to be under {} characters! You tried to set {}.".format(
+                    "നിങ്ങളെക്കുറിച്ചുള്ള വിവരണം {} അക്ഷരത്തിൽ ഒതുക്കേണ്ടതാണ് ! നിങ്ങൾ ഇപ്പോൾ ശ്രമിച്ച അക്ഷരങ്ങളുടെ എണ്ണം  {} ആണ് .".format(
                         MAX_MESSAGE_LENGTH // 4, len(bio[1])))
     else:
         message.reply_text("Reply to someone's message to set their bio!")
