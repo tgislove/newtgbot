@@ -28,16 +28,16 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപഭോക്താവിനെ സൂചിപ്പിക്കുന്നതായി തോന്നുന്നില്ല ! ")
         return ""
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text("How am I meant to promote someone that's already an admin?")
+        message.reply_text("മുൻകൂട്ടി ADMIN ആയിരിക്കുന്ന ഒരാളെ ഞാൻ വീണ്ടും എങ്ങനെ ADMIN ആക്കും ")
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I can't promote myself! Get an admin to do it for me.")
+        message.reply_text("എനിക്കെന്റെതന്നെ പദവി ഉയർത്താൻ സാധിക്കില്ല ! ")
         return ""
 
     # set same perms as bot - bot can't assign higher perms than itself!
@@ -53,7 +53,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
                           can_pin_messages=bot_member.can_pin_messages,
                           can_promote_members=bot_member.can_promote_members)
 
-    message.reply_text("Successfully promoted!")
+    message.reply_text("പദവി വിജയകരമായി ഉയർത്തിയിരിക്കുന്നു !")
     return "<b>{}:</b>" \
            "\n#PROMOTED" \
            "\n<b>Admin:</b> {}" \
@@ -79,11 +79,11 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chat.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text("This person CREATED the chat, how would I demote them?")
+        message.reply_text("ഈ ഗ്രൂപ് ഉണ്ടാക്കിയ ആളുടെ പദവി താഴ്ത്താൻ സാധിക്കുന്നതല്ല  ")
         return ""
 
     if not user_member.status == 'administrator':
-        message.reply_text("Can't demote what wasn't promoted!")
+        message.reply_text("ഞാൻ പദവി ഉയർത്താത്തതിനെ എനിക്ക് താഴ്ത്താനും പറ്റില്ല ")
         return ""
 
     if user_id == bot.id:
@@ -100,7 +100,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                               can_restrict_members=False,
                               can_pin_messages=False,
                               can_promote_members=False)
-        message.reply_text("Successfully demoted!")
+        message.reply_text("പദവി വിജയകരമായി താഴ്ത്തിയിരുന്നു !")
         return "<b>{}:</b>" \
                "\n#DEMOTED" \
                "\n<b>Admin:</b> {}" \
@@ -109,8 +109,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
                                           mention_html(user_member.user.id, user_member.user.first_name))
 
     except BadRequest:
-        message.reply_text("Could not demote. I might not be admin, or the admin status was appointed by another "
-                           "user, so I can't act upon them!")
+        message.reply_text("എനിക്ക് ഈ ഉപഭോക്താവിന്റെ പദവി ഉയർത്താനോ താഴ്ത്താനോ  കഴിയില്ല കാരണം, ഞാൻ ഇവിടെ ADMIN ആയിരിക്കില്ല ")
         return ""
 
 
@@ -182,9 +181,9 @@ def invite(bot: Bot, update: Update):
             invitelink = bot.exportChatInviteLink(chat.id)
             update.effective_message.reply_text(invitelink)
         else:
-            update.effective_message.reply_text("I don't have access to the invite link, try changing my permissions!")
+            update.effective_message.reply_text("INVITE LINK എന്നതിലേക്ക് എനിക്ക് പ്രവേശനം ഇല്ല !")
     else:
-        update.effective_message.reply_text("I can only give you invite links for supergroups and channels, sorry!")
+        update.effective_message.reply_text("എനിക്ക് SUPERGROUPലെ LINKകൾ മാത്രമേ എടുത്ത് തരുവാൻ സാധിക്കുകയുള്ളു !")
 
 
 @run_async
