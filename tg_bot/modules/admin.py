@@ -74,7 +74,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപഭോക്താവിനെ ചൂണ്ടിക്കാണിക്കുന്നതായി തോന്നുന്നില്ല.")
         return ""
 
     user_member = chat.get_member(user_id)
@@ -87,7 +87,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text("I can't demote myself! Get an admin to do it for me.")
+        message.reply_text("എനിക്കെന്റെതന്നെ പദവി താഴ്ത്താൻ സാധിക്കില്ല, അതിന് വേറെ ഒരു ADMINന്റെ സഹായം എനിക്ക് ആവിശ്യമാണ്.")
         return ""
 
     try:
