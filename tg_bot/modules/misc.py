@@ -77,9 +77,9 @@ SLAP_TEMPLATES = (
     "{user1} {user2} വിന്റെ തലക്ക് ഇരുമ്പ് പൈപ്പ് വെച്ചടിച്ചു.",
     "{user1} ഭിത്തിയിൽ തൂക്കിയിട്ടിരുന്ന ക്ലോക്ക് എടുത്ത് {user2} വിന്റെ പ്രധാന ഭാഗത്ത് അടിച്ചു .",
     "{user1} {user2} വിനെ കുനിച്ചു നിർത്തി വലിയൊരു തടിക്കഷണം മുതുകത്തിട്ടു",
-    "{user1} grabs up a {item} and {hits} {user2} with it.",
-    "{user1} ties {user2} to a chair and {throws} a {item} at them.",
-    "{user1} gave a friendly push to help {user2} learn to swim in lava."
+    "{user1} ഒരു ഇരുമ്പിന്റെ കസേര എടുത്ത് {user2} ന്റെ തലക്ക് അടിച്ചു..",
+    "{user1} {user2} നെ മരത്തിൽ കെട്ടിയിട്ട് കാലിൽ തീ കൊടുത്തു..."
+    
 )
 
 ITEMS = (
