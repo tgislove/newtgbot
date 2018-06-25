@@ -46,7 +46,7 @@ def set_about_me(bot: Bot, update: Update):
             message.reply_text("താങ്കളുടെ വിവരങ്ങൾ വിജയകരമായി രേഖപ്പെടുത്തിയിരിക്കുന്നു ")
         else:
             message.reply_text(
-                "Your info needs to be under {} characters! You have {}.".format(MAX_MESSAGE_LENGTH // 4, len(info[1])))
+                "താങ്കളെ കുറിച്ചുള്ള വിവരണം {} അക്ഷരങ്ങളിൽ ഒതുക്കേണ്ടതാണ് ".format(MAX_MESSAGE_LENGTH // 4, len(info[1])))
 
 
 @run_async
@@ -119,7 +119,7 @@ __help__ = """
  - /me: will get your or another user's info
 """
 
-__mod_name__ = "ജീവചരിത്രം"
+__mod_name__ = "ഉപഭോക്താവിന്റെ വിവരങ്ങൾ"
 
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
 GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio, pass_args=True)
