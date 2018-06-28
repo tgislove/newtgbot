@@ -35,8 +35,7 @@ def check_flood(bot: Bot, update: Update) -> str:
 
     try:
         chat.kick_member(user.id)
-        msg.reply_text("I like to leave the flooding to natural disasters. But you, you were just a "
-                       "disappointment. Get out.")
+        msg.reply_text("താൻ എന്തൊരു വെറുപ്പിക്കൽ ആണെടോ... ഇങ്ങനെ നിർത്താതെ മെസ്സേജ് അയച്ചാൽ മറ്റുള്ളവർക്ക് ശല്യം ആകില്ലേ.... തന്നെ ഇനി ഈ ഗ്രൂപ്പിന് ആവിശ്യം ഇല്ല ഇറങ്ങി പൊക്കോ....")
 
         return "<b>{}:</b>" \
                "\n#BANNED" \
@@ -45,7 +44,7 @@ def check_flood(bot: Bot, update: Update) -> str:
                                              mention_html(user.id, user.first_name))
 
     except BadRequest:
-        msg.reply_text("I can't kick people here, give me permissions first! Until then, I'll disable antiflood.")
+        msg.reply_text("നിങ്ങൾ എനിക്ക് Permissions തരാത്ത കാലത്തോളം ഈ സേവനം നിങ്ങൾക്ക് ഉപയോഗിക്കാൻ കഴിയില്ല.")
         sql.set_flood(chat.id, 0)
         return "<b>{}:</b>" \
                "\n#INFO" \
@@ -65,13 +64,13 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
         val = args[0].lower()
         if val == "off" or val == "no" or val == "0":
             sql.set_flood(chat.id, 0)
-            message.reply_text("Antiflood has been disabled.")
+            message.reply_text("ചറ പറ മെസ്സേജ് അയക്കുന്നവരെ ഇനി ഞാൻ പുറത്താക്കുന്നതല്ല.")
 
         elif val.isdigit():
             amount = int(val)
             if amount <= 0:
                 sql.set_flood(chat.id, 0)
-                message.reply_text("Antiflood has been disabled.")
+                message.reply_text("ചറ പറ മെസ്സേജ് അയക്കുന്നവരെ ഇനി ഞാൻ പുറത്താക്കുന്നതല്ല.")
                 return "<b>{}:</b>" \
                        "\n#SETFLOOD" \
                        "\n<b>Admin:</b> {}" \
@@ -83,7 +82,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
 
             else:
                 sql.set_flood(chat.id, amount)
-                message.reply_text("Antiflood has been updated and set to {}".format(amount))
+                message.reply_text("മെസ്സേജ് നിയന്ത്രണം {} എണ്ണത്തിലേക്ക് ആക്കിയിട്ടുണ്ട് ".format(amount))
                 return "<b>{}:</b>" \
                        "\n#SETFLOOD" \
                        "\n<b>Admin:</b> {}" \
@@ -91,7 +90,7 @@ def set_flood(bot: Bot, update: Update, args: List[str]) -> str:
                                                                     mention_html(user.id, user.first_name), amount)
 
         else:
-            message.reply_text("Unrecognised argument - please use a number, 'off', or 'no'.")
+            message.reply_text("താങ്കൾ പറയുന്നത് എനിക്ക് മനസ്സിലാകുന്നില്ല.... ഒന്നെങ്കിൽ number ഉപയോഗിക്കുക അല്ലെങ്കിൽ Yes-No  ഉപയോഗിക്കുക ")
 
     return ""
 
@@ -102,10 +101,10 @@ def flood(bot: Bot, update: Update):
 
     limit = sql.get_flood_limit(chat.id)
     if limit == 0:
-        update.effective_message.reply_text("I'm not currently enforcing flood control!")
+        update.effective_message.reply_text("ഞാൻ ഇപ്പോൾ മെസ്സേജ് നിയന്ത്രണം നടത്തുന്നില്ല !")
     else:
         update.effective_message.reply_text(
-            "I'm currently banning users if they send more than {} consecutive messages.".format(limit))
+            " {} മെസ്സേജിൽ കൂടുതൽ ഒരേ സമയം അയക്കുന്ന ആളെ ഞാൻ ബൺ കൊടുത്ത് വിടുന്നതാണ്.".format(limit))
 
 
 def __migrate__(old_chat_id, new_chat_id):
@@ -117,17 +116,17 @@ def __chat_settings__(chat_id, user_id):
     if limit == 0:
         return "*Not* currently enforcing flood control."
     else:
-        return "Antiflood is set to `{}` messages.".format(limit)
+        return "മെസ്സേജ് നിയന്ത്രണം `{}` എന്നതിലേക്ക് ആക്കിയിരിക്കുന്നു .".format(limit)
 
 
 __help__ = """
- - /flood: Get the current flood control setting
+ - /flood: നിങ്ങൾക്ക് നിലവിലുള്ള മെസ്സേജ് നിയന്ത്രണം അറിയാൻ..
 
 *Admin only:*
  - /setflood <int/'no'/'off'>: enables or disables flood control
 """
 
-__mod_name__ = "AntiFlood"
+__mod_name__ = "നിയന്ത്രണം"
 
 FLOOD_BAN_HANDLER = MessageHandler(Filters.all & ~Filters.status_update & Filters.group, check_flood)
 SET_FLOOD_HANDLER = CommandHandler("setflood", set_flood, pass_args=True, filters=Filters.group)
