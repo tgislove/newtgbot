@@ -63,17 +63,15 @@ def sed(bot: Bot, update: Update):
         repl, repl_with, flags = sed_result
 
         if not repl:
-            update.effective_message.reply_to_message.reply_text("You're trying to replace... "
-                                                                 "nothing with something?")
+            update.effective_message.reply_to_message.reply_text("നിങ്ങൾ ഒന്നുമില്ലായ്മയിൽ നിന്നും എന്തെങ്കിലും ഉണ്ടാക്കാൻ ശ്രമിക്കുകയാണോ...? ")
+                                                        
             return
 
         try:
             check = re.match(repl, to_fix, flags=re.IGNORECASE)
 
             if check and check.group(0).lower() == to_fix.lower():
-                update.effective_message.reply_to_message.reply_text("Hey everyone, {} is trying to make "
-                                                                     "me say stuff I don't wanna "
-                                                                     "say!".format(update.effective_user.first_name))
+                update.effective_message.reply_to_message.reply_text("എല്ലാരും ശ്രദ്ധിക്കുക, {} എന്നെക്കൊണ്ട് ഞാൻ പറയാൻ പാടില്ലാത്ത കാര്യങ്ങൾ പറയിപ്പിക്കുകയാണ്"                                                                                                                                    .format(update.effective_user.first_name))
                 return
 
             if 'i' in flags and 'g' in flags:
@@ -92,8 +90,8 @@ def sed(bot: Bot, update: Update):
 
         # empty string errors -_-
         if len(text) >= telegram.MAX_MESSAGE_LENGTH:
-            update.effective_message.reply_text("The result of the sed command was too long for \
-                                                 telegram!")
+            update.effective_message.reply_text("നിങ്ങൾ ഉപയോഗിച്ചിരിക്കുന്ന SED COMMAND \
+                                           ടെലെഗ്രാമിൽ ഉപയോഗിക്കാൻ പറ്റുന്നതിനേക്കാൾ വലുതാണ്!")
         elif text:
             update.effective_message.reply_to_message.reply_text(text)
 
@@ -109,7 +107,7 @@ If you want to use these characters, make sure you escape them!
 eg: \\?.
 """.format(telegram.MAX_MESSAGE_LENGTH)
 
-__mod_name__ = "Sed/Regex"
+__mod_name__ = "സെഡ്/റെഗ്സ്"
 
 
 SED_HANDLER = DisableAbleRegexHandler(r's([{}]).*?\1.*'.format("".join(DELIMITERS)), sed, friendly="sed")
