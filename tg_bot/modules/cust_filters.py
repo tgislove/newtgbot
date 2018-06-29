@@ -18,7 +18,7 @@ from tg_bot.modules.helper_funcs.string_handling import split_quotes, button_mar
 from tg_bot.modules.sql import cust_filters_sql as sql
 
 HANDLER_GROUP = 10
-BASIC_FILTER_STRING = "*Filters in this chat:*\n"
+BASIC_FILTER_STRING = "*ഈ ഗ്രൂപ്പിൽ ഉപയോഗത്തിൽ ഉള്ള Filterകൾ:*\n"
 
 
 @run_async
@@ -27,7 +27,7 @@ def list_handlers(bot: Bot, update: Update):
     all_handlers = sql.get_chat_triggers(chat.id)
 
     if not all_handlers:
-        update.effective_message.reply_text("No filters are active here!")
+        update.effective_message.reply_text("ഈ ഗ്രൂപ്പിൽ FILTERS ഒന്നും തയ്യാറാക്കിയിട്ടില്ല!")
         return
 
     filter_list = BASIC_FILTER_STRING
@@ -73,7 +73,7 @@ def filters(bot: Bot, update: Update):
         content, buttons = button_markdown_parser(extracted[1], entities=msg.parse_entities(), offset=offset)
         content = content.strip()
         if not content:
-            msg.reply_text("There is no note message - You can't JUST have buttons, you need a message to go with it!")
+            msg.reply_text("എന്തെങ്കിലും Message ഇല്ലാതെ Button മാത്രം ആയി ഉപയോഗിക്കാൻ കഴിയില്ല!")
             return
 
     elif msg.reply_to_message and msg.reply_to_message.sticker:
@@ -129,16 +129,16 @@ def stop_filter(bot: Bot, update: Update):
     chat_filters = sql.get_chat_triggers(chat.id)
 
     if not chat_filters:
-        update.effective_message.reply_text("No filters are active here!")
+        update.effective_message.reply_text("ഈ ഗ്രൂപ്പിൽ FILTERS ഒന്നും തയ്യാറാക്കിയിട്ടില്ല!")
         return
 
     for keyword in chat_filters:
         if keyword == args[1]:
             sql.remove_filter(chat.id, args[1])
-            update.effective_message.reply_text("Yep, I'll stop replying to that.")
+            update.effective_message.reply_text("ഇനി മുതൽ ആ MESSAGEന് ഞാൻ പ്രതികരിക്കുന്നതല്ല.")
             raise DispatcherHandlerStop
 
-    update.effective_message.reply_text("That's not a current filter - run /filters for all active filters.")
+    update.effective_message.reply_text("അങ്ങനെ ഒരു ഫിൽറ്റർ ഇവിടെ ഉള്ളതായി എനിക്ക് തോന്നുന്നില്ല /filters കൊടുത്ത് ഇവിടെ ലഭ്യമായ FILTERകൾ ഏതൊക്കെ എന്ന് നോക്കുക.")
 
 
 @run_async
@@ -186,7 +186,7 @@ def reply_filter(bot: Bot, update: Update):
                                          reply_markup=keyboard)
                     else:
                         message.reply_text("This note could not be sent, as it is incorrectly formatted. Ask in "
-                                           "@MarieSupport if you can't figure out why!")
+                                           "@keralabots if you can't figure out why!")
                         LOGGER.warning("Message %s could not be parsed", str(filt.reply))
                         LOGGER.exception("Could not parse filter %s in chat %s", str(filt.keyword), str(chat.id))
 
@@ -206,21 +206,18 @@ def __migrate__(old_chat_id, new_chat_id):
 
 def __chat_settings__(chat_id, user_id):
     cust_filters = sql.get_chat_triggers(chat_id)
-    return "There are `{}` custom filters here.".format(len(cust_filters))
+    return "ഇവിടെ മൊത്തത്തിൽ `{}` FILTERS ഉണ്ട് .".format(len(cust_filters))
 
 
 __help__ = """
- - /filters: list all active filters in this chat.
+ - /filters: തയ്യാറാക്കി വെച്ചിട്ടുള്ള FILTERS ഏതൊക്കെ ആണെന്ന് അറിയാൻ.
 
-*Admin only:*
- - /filter <keyword> <reply message>: add a filter to this chat. The bot will now reply that message whenever 'keyword'\
-is mentioned. If you reply to a sticker with a keyword, the bot will reply with that sticker. NOTE: all filter \
-keywords are in lowercase. If you want your keyword to be a sentence, use quotes. eg: /filter "hey there" How you \
-doin?
- - /stop <filter keyword>: stop that filter.
+*Adminsന് മാത്രം:*
+ - /filter <keyword> <reply message>: ഈ CHATലേക്ക് ഒരു FILTER ചേർക്കുക. 'KEYWORD' സൂചിപ്പിച്ച സമയത്ത് ബോട്ട് ഇപ്പോൾ ആ MESSAGEന് മറുപടി നൽകും. ഒരു KEYWORDനൊപ്പം ഒരു സ്റ്റിക്കറോടു മറുപടി നൽകുകയാണെങ്കിൽ, ബോട്ട് ആ സ്റ്റിക്കർ ഉപയോഗിച്ച് മറുപടി നൽകും. ശ്രദ്ധിക്കുക: എല്ലാ FILTER കീവേഡുകളും ചെറിയക്ഷരത്തിലാണ്. നിങ്ങളുടെ KEYWORD ഒരു വാചകം ആയിരിക്കണമെങ്കിൽ ഉദ്ധരണികൾ ഉപയോഗിക്കുക. ഉദാ: /filter "എന്തൊക്കെ ഉണ്ട് വിശേഷം "സുഖം !
+ - /stop <filter keyword>: ഒരു FILTERന്റെ ഉപയോഗം നിർത്തലാക്കാൻ !
 """
 
-__mod_name__ = "Filters"
+__mod_name__ = "ഫിൽറ്ററുകൾ"
 
 FILTER_HANDLER = CommandHandler("filter", filters)
 STOP_HANDLER = CommandHandler("stop", stop_filter)
