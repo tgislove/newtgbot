@@ -72,7 +72,7 @@ def sed(bot: Bot, update: Update):
 
             if check and check.group(0).lower() == to_fix.lower():
                 update.effective_message.reply_to_message.reply_text("എല്ലാരും ശ്രദ്ധിക്കുക, {} എന്നെക്കൊണ്ട് ഞാൻ പറയാൻ പാടില്ലാത്ത കാര്യങ്ങൾ പറയിപ്പിക്കുകയാണ്".format(update.effective_user.first_name))
-                                                                                                                                                   return
+      return                                                                                                                                            
 
             if 'i' in flags and 'g' in flags:
                 text = re.sub(repl, repl_with, to_fix, flags=re.I).strip()
