@@ -50,19 +50,19 @@ def gban(bot: Bot, update: Update, args: List[str]):
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("നിങ്ങൾ ഒരു ഉപഭോക്താവിനെ സൂചിപ്പിക്കുന്നതായി തോന്നുന്നില്ല.....")
         return
 
     if int(user_id) in SUDO_USERS:
-        message.reply_text("I spy, with my little eye... a sudo user war! Why are you guys turning on each other?")
+        message.reply_text("ഞാൻ എന്താണീ കാണുന്നത്... SUDO USERS തമ്മിലുള്ള യുദ്ധമോ.... നിങ്ങൾ എന്താണ് ഇങ്ങനെ ചെറിയ കുട്ടികളെപ്പോലെ....")
         return
 
     if int(user_id) in SUPPORT_USERS:
-        message.reply_text("OOOH someone's trying to gban a support user! *grabs popcorn*")
+        message.reply_text("ഇതെന്ത് മറിമായം.... SUPPORT USERനെ GBAN ചെയ്യാൻ നോക്കുന്നോ.... നടക്കില്ല മോനെ....")
         return
 
     if user_id == bot.id:
-        message.reply_text("-_- So funny, lets gban myself why don't I? Nice try.")
+        message.reply_text("ഇതെന്ത് ഞാൻ എന്നെ GBAN ചെയ്യാനോ.... ഇങ്ങളെന്താ തമാശയാക്കാണ്... ")
         return
 
     try:
@@ -72,26 +72,26 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
 
     if user_chat.type != 'private':
-        message.reply_text("That's not a user!")
+        message.reply_text("അങ്ങനെ ഒരാൾ ഇല്ല സർ..... >‿<")
         return
 
     if sql.is_user_gbanned(user_id):
         if not reason:
-            message.reply_text("This user is already gbanned; I'd change the reason, but you haven't given me one...")
+            message.reply_text("ഇയാളെ പണ്ടെന്തോ ചെയ്തതിന് GBAN ആകിയിട്ടുള്ളതാണ്.... എന്തായാലും വേണ്ടില്ല നിങ്ങൾ പറഞ്ഞ ഈ പുതിയ കാരണം ഞാൻ ഓർത്ത് വയ്ക്കുന്നതാണ്.....")
             return
 
         old_reason = sql.update_gban_reason(user_id, user_chat.username or user_chat.first_name, reason)
         if old_reason:
-            message.reply_text("This user is already gbanned, for the following reason:\n"
+            message.reply_text("ഇയാളെ മുൻപ് GBAN ചെയ്ത കാരണം..:\n"
                                "<code>{}</code>\n"
-                               "I've gone and updated it with your new reason!".format(html.escape(old_reason)),
+                               "നിങ്ങൾ ഇപ്പോൾ പറഞ്ഞ കാരണം ഞാൻ ഓർത്ത് വയ്ക്കുന്നതാണ്...".format(html.escape(old_reason)),
                                parse_mode=ParseMode.HTML)
         else:
-            message.reply_text("This user is already gbanned, but had no reason set; I've gone and updated it!")
+            message.reply_text("മുൻപ് GBAN ചെയ്തപ്പോൾ കാരണം ഒന്നും രേഖപെടുത്തിയിട്ടില്ലാരുന്നു... എന്തായാലും നിങ്ങൾ ഇപ്പോൾ പറഞ്ഞ കാരണം ഞാൻ ഓർമ്മിച്ച് വെക്കുന്നതാണ്....!")
 
         return
 
-    message.reply_text("ഇതൊക്കെ എന്ത് ")
+    message.reply_text("ഇതൊക്കെ എന്ത്.... ഇത് ചെറുത്... ◕‿↼ ")
 
     banner = update.effective_user  # type: Optional[User]
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
@@ -142,12 +142,12 @@ def ungban(bot: Bot, update: Update, args: List[str]):
         return
 
     if not sql.is_user_gbanned(user_id):
-        message.reply_text("This user is not gbanned!")
+        message.reply_text("ഇനി ഞാനുള്ള ഗ്രൂപ്പിന്റെ പരിസരത്തുകൂടി പോലും മൂപ്പർക്ക് വരാൻ പറ്റൂല്ല...!! ʕº̫͡ºʔ")
         return
 
     banner = update.effective_user  # type: Optional[User]
 
-    message.reply_text("I'll give {} a second chance, globally.".format(user_chat.first_name))
+    message.reply_text("ഞാൻ {} ക്ക് ഒരു വട്ടം കൂടി ചാൻസ് കൊടുക്കുകയാണ്.... ഇനി കിട്ടിയാൽ ഞാനോ എന്റെ മൊതലാളിയോ ഉത്തരവാദി അല്ല.... ⊙_⊙".format(user_chat.first_name))
 
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
                  "{} has ungbanned user {}".format(mention_html(banner.id, banner.first_name),
@@ -208,7 +208,7 @@ def check_and_ban(update, user_id, should_message=True):
     if sql.is_user_gbanned(user_id):
         update.effective_chat.kick_member(user_id)
         if should_message:
-            update.effective_message.reply_text("This is a bad person, they shouldn't be here!")
+            update.effective_message.reply_text("ഈ കള്ള ഹമുക്ക് ഇവിടെ വരാൻ പാടില്ല... ഇയാൾ ആള് ശരിയല്ല....")
 
 
 @run_async
