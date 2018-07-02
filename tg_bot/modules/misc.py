@@ -119,6 +119,12 @@ GMAPS_TIME = "https://maps.googleapis.com/maps/api/timezone/json"
 @run_async
 def runs(bot: Bot, update: Update):
     update.effective_message.reply_text(random.choice(RUN_STRINGS))
+
+    if message.reply_to_message:
+      message.reply_to_message.reply_text(RUN_STRINGS)
+    else:
+      message.reply_text(RUN_STRINGS)
+
 @run_async
 def slap(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
