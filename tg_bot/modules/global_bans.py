@@ -124,7 +124,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
             pass
 
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS, "gban complete!")
-    message.reply_text("Person has been gbanned.")
+    message.reply_text("GBAN ചെയ്തിട്ടുണ്ട് ഇനി ഞാനുള്ള ഗ്രൂപ്പിന്റെ പരിസരത്തുകൂടി പോലും മൂപ്പർക്ക് വരാൻ പറ്റൂല്ല.... (๑◕︵◕๑) ")
 
 
 @run_async
