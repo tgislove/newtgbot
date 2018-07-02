@@ -228,7 +228,7 @@ def info(bot: Bot, update: Update, args: List[str]):
     text += "\nPermanent user link: {}".format(mention_html(user.id, "link"))
 
     if user.id == OWNER_ID:
-        text += "\n\nThis person is my owner - I would never do anything against them!"
+        text += "\n\nഈ കള്ള കുരുപ്പ് ആണെന്റെ മൊയലാളി.... ഇവനെ എനിക്ക് ഒന്നും ചെയ്യാൻ പറ്റൂല്ല.... 😔!"
     else:
         if user.id in SUDO_USERS:
             text += "\nThis person is one of my sudo users! " \
