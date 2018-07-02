@@ -133,7 +133,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
 
     user_id = extract_user(message, args)
     if not user_id:
-        message.reply_text("You don't seem to be referring to a user.")
+        message.reply_text("GBAN ചെയ്തിട്ടുണ്ട് ഇനി ഞാനുള്ള ഗ്രൂപ്പിന്റെ പരിസരത്തോടെ പോലും മൂപ്പർക്ക് വരാൻ പറ്റൂല്ല..... ≧^◡^≦")
         return
 
     user_chat = bot.get_chat(user_id)
