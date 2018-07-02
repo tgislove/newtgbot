@@ -231,16 +231,16 @@ def info(bot: Bot, update: Update, args: List[str]):
         text += "\n\nഈ കള്ള കുരുപ്പ് ആണെന്റെ മൊയലാളി.... ഇവനെ എനിക്ക് ഒന്നും ചെയ്യാൻ പറ്റൂല്ല.... 😔!"
     else:
         if user.id in SUDO_USERS:
-            text += "\nThis person is one of my sudo users! " \
-                    "Nearly as powerful as my owner - so watch it."
+            text += "\nഇയാൾ ഒരു USER ആണ് 😋" \
+                    "മൊയ്ലാളിന്റെ അത്രേം പവർ ഒക്കെ ഉണ്ട്... അതോണ്ട് സൂക്ഷിച്ചും കണ്ടും ഒക്കെ നിന്നോ.... 😊"
         else:
             if user.id in SUPPORT_USERS:
-                text += "\nThis person is one of my support users! " \
-                        "Not quite a sudo user, but can still gban you off the map."
+                text += "\nഇയാൾ ഒരു SUPPORT USER ആണ്.. ! " \
+                        "GBAN ചെയ്യാൻ അല്ലാതെ വേറൊന്നിനും പറ്റൂല്ല... പക്ഷെ അത് മതിയല്ലോ.... അതോണ്ട് ഇവനേം ഒന്ന് സൂക്ഷിച്ചോ.... 😉."
 
             if user.id in WHITELIST_USERS:
-                text += "\nThis person has been whitelisted! " \
-                        "That means I'm not allowed to ban/kick them."
+                text += "\nഇയാൾ WHITELISTED ആണ്...! " \
+                        "അതോണ്ട് ഇയാളെ എനിക്ക് ban/kick ചെയ്യാൻ പറ്റൂല്ല.... 😔"
 
     for mod in USER_INFO:
         mod_info = mod.__user_info__(user.id).strip()
