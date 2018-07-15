@@ -58,7 +58,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
     try:
         chat.kick_member(user_id)
         bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
-        message.reply_text("ബണ്ണും പാലും കൊടുത്തു വിട്ടിട്ടുണ്ട് !")
+        message.reply_text("ബൺ കൊടുത്ത് വിട്ടിട്ടുണ്ട്...!")
         return log
 
     except BadRequest as excp:
