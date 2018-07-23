@@ -87,7 +87,7 @@ def new_member(bot: Bot, update: Update):
         for new_mem in new_members:
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
-                update.effective_message.reply_text("മൊതലാളി വന്നേ....!")
+                update.effective_message.reply_text("Master is in the houseeee, let's get this party started!")
                 continue
 
             # Don't welcome yourself
@@ -134,7 +134,7 @@ def new_member(bot: Bot, update: Update):
         if prev_welc:
             try:
                 bot.delete_message(chat.id, prev_welc)
-bot.delete_message(chat.id, update.message.message_id)
+                bot.delete_message(chat.id, update.message.message_id)
             except BadRequest as excp:
                 pass
 
@@ -469,7 +469,7 @@ __help__ = """
  - /welcomehelp: view more formatting information for custom welcome/goodbye messages.
 """.format(WELC_HELP_TXT)
 
-__mod_name__ = "സ്വാഗതം/വിടപറയൽ"
+__mod_name__ = "Welcomes/Goodbyes"
 
 NEW_MEM_HANDLER = MessageHandler(Filters.status_update.new_chat_members, new_member)
 LEFT_MEM_HANDLER = MessageHandler(Filters.status_update.left_chat_member, left_member)
