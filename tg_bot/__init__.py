@@ -58,6 +58,7 @@ if ENV:
     BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAgADOwADPPEcAXkko5EB3YGYAg')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
     API_WEATHER = os.environ.get('API_OPENWEATHER', None)
+    STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
 
 else:
     from tg_bot.config import Development as Config
