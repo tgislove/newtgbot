@@ -16,4 +16,3 @@ telegram
 zalgo_text
 pynewtonmath
 bs4
-lxml
