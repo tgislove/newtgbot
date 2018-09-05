@@ -22,8 +22,18 @@ PM_START_TEXT = """
 
 എന്നെ നോക്കി നടത്തുന്നത്  [ഇദ്ദേഹം](tg://user?id={}) ആണ് . എന്നെ നിർമിച്ചിരിക്കുന്നത് python3യിൽ 
 python-telegram-bot library ഉപയോഗിച്ചാണ്.... ഞാൻ പൂർണമായും opensource ആണ്.. എന്റെ കോഡ് നിങ്ങൾക്ക് [ഇവിടെ](github.com/AbinPaulZackariah/mariebot-malayalam) കാണാവുന്നതാണ്...
-
 എന്നെ ഉപയോഗിക്കാൻ ആവിശ്യമായ commandകൾ അറിയാൻ /help കൊടുത്താൽ മതിയാകും..
+
+Using standard [Marie](http://telegram.dog/BanhammerMarie_bot) is always gonna be easier.
+Perks:
+- latest features
+- it's free
+- biggest list of users for any /info commands
+- the database will always be correctly formatted
+- bugs will always be fixed ASAP
+- no need to maintain anything yourself
+Also, no support can be given for any [clones like this](https://telegram.dog/MissAnn_Bot); source might be changed and that's not [my](https://telegram.dog/PaulSonOfLars) problem.
+**Keep in mind that any changes you DO do to the source have to be on github, as per the license.**
 
 """
 
@@ -45,12 +55,11 @@ HELP_STRINGS = """
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nഈ പറഞ്ഞിരിക്കുന്ന commandകൾ എല്ലാം  / അല്ലെങ്കിൽ ! വെച്ച് ഉപയോഗിക്കാവുന്നതാണ്...\n")
 
-DONATE_STRING = """നമസ്കാരം, നിങ്ങൾ സംഭാവന ചെയ്യാൻ പോകുന്നു എന്ന് കേൾക്കുന്നതിൽ അതിയായ സന്തോഷം ഉണ്ട്!
-[എന്റെ മൊതലാളി](t.me/DontTagMeLooser) വളരെ കഷ്ടപ്പെട്ടാണ് എന്നെ നിർമിച്ചിരിക്കുന്നത്... നിങ്ങൾ തരുന്ന ഓരോ സംഭാവനയും എന്നെ കൂടുതൽ നന്നാക്കുന്നതിൽ പ്രെചോദനം ആകും 
-
-എനിക്ക് സംഭാവന നൽകാൻ [ഇദ്ദേഹം](http://t.me/DontTagMeLooser) ആയി  ബന്ധപ്പെടുക.... നന്ദി 
-
-"""
+DONATE_STRING = """Heya, glad to hear you want to donate!
+It took lots of work for [my creator](t.me/SonOfLars) to get me to where I am now, and every donation helps \
+motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
+(see his bio!). He's just a poor student, so every little helps!
+There are two ways of paying him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
 
 IMPORTED = {}
 MIGRATEABLE = []
