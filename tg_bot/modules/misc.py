@@ -171,7 +171,10 @@ def get_bot_ip(bot: Bot, update: Update):
     res = requests.get("http://ipinfo.io/ip")
     update.message.reply_text(res.text)
 
-
+@run_async
+def extra(bot: Bot, update: Update):
+    update.message.reply_text("Don't Use മൊയ്‌ലാളി don't like that... ")
+    
 @run_async
 def get_id(bot: Bot, update: Update, args: List[str]):
     user_id = extract_user(update.effective_message, args)
@@ -374,10 +377,11 @@ IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
 TIME_HANDLER = CommandHandler("time", get_time, pass_args=True)
 
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
-SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
+SLAP_HANDLER = DisableAbleCommandHandler("angry", slap, pass_args=True)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 
 PING_HANDLER = DisableAbleCommandHandler("ping", ping)
+EXTRA_HANDLER = CommandHandler("slap", extra)
 ECHO_HANDLER = CommandHandler("echo", echo, filters=Filters.user(OWNER_ID))
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
 
@@ -386,6 +390,7 @@ STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(PING_HANDLER)
 dispatcher.add_handler(IP_HANDLER)
+dispatcher.add_handler(EXTRA_HANDLER)
 dispatcher.add_handler(TIME_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
