@@ -173,7 +173,7 @@ def get_bot_ip(bot: Bot, update: Update):
 
 @run_async
 def extra(bot: Bot, update: Update):
-    update.message.reply_text("Don't Use മൊയ്‌ലാളി don't like that... ")
+    update.message.reply_text("ഞെക്കണ്ട വർക്കാവുല്ല.. 😝😝😉😉 ")
     
 @run_async
 def get_id(bot: Bot, update: Update, args: List[str]):
