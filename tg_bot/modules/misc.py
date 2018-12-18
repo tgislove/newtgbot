@@ -6,7 +6,7 @@ from typing import Optional, List
 import time
 import requests
 from telegram import Message, Chat, Update, Bot, MessageEntity
-from telegram import ParseMode
+from telegram import ParseMode, ReplyKeyboardRemove, ReplyKeyboardMarkup
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
 
@@ -318,6 +318,28 @@ def ping(bot: Bot, update: Update):
     ping_time = float(end_time - start_time)*1000
     update.effective_message.reply_text(" Ping speed was : {}ms".format(ping_time))
 
+@run_async
+def reply_keyboard_remove(bot: Bot, update: Update):
+    reply_keyboard = []
+    reply_keyboard.append([
+        ReplyKeyboardRemove(
+            remove_keyboard=True
+        )
+    ])
+    reply_markup = ReplyKeyboardRemove(
+        remove_keyboard=True
+    )
+    old_message = bot.send_message(
+        chat_id=update.message.chat_id,
+        text='trying',
+        reply_markup=reply_markup,
+        reply_to_message_id=update.message.message_id
+    )
+    bot.delete_message(
+        chat_id=update.message.chat_id,
+        message_id=old_message.message_id
+    )
+
 
 MARKDOWN_HELP = """
 Markdown is a very powerful formatting tool supported by telegram. {} has some enhancements, to make sure that \
@@ -361,6 +383,7 @@ def stats(bot: Bot, update: Update):
 # /ip is for private use
 __help__ = """
  - /id: get the current group id. If used by replying to a message, gets that user's id.
+ - /rmkeyboard: Helps you to remove Bot Keyboards from chats... Kanged from @MidukkiBot.
  - /runs: reply a random string from an array of replies.
  - /slap: slap a user, or get slapped if not a reply.
  - /time <place>: gives the local time at the given place.
@@ -384,7 +407,7 @@ PING_HANDLER = DisableAbleCommandHandler("ping", ping)
 EXTRA_HANDLER = CommandHandler("lol", extra)
 ECHO_HANDLER = CommandHandler("echo", echo, filters=Filters.user(OWNER_ID))
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
-
+RMKEYBOARD_HANDLER = DisableAbleCommandHandler("rmkeyboard", reply_keyboard_remove)
 STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
 
 dispatcher.add_handler(ID_HANDLER)
@@ -398,3 +421,4 @@ dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
+dispatcher.add_handler(RMKEYBOARD_HANDLER)
