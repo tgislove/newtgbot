@@ -50,7 +50,7 @@ def ban(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     log = "<b>{}:</b>" \
-          "\n#BANNED' \
+          "\n#BANNED" \
           "\n<b>• Admin:</b> {}" \
           "\n<b>• User:</b> {}" \
           "\n<b>• ID:</b> <code>{}</code>".format(html.escape(chat.title), mention_html(user.id, user.first_name), 
