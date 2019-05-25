@@ -110,8 +110,8 @@ __help__ = """
 - /quickscope **userid** **chatid**: Ban user from chat.
 - /quickunban **userid** **chatid**: Unban user from chat.
 - /snipe **chatid** **string**: Make me send a message to a specific chat.
-- /rban **chatid** **userid** remotely ban a user from a chat
-- /runban **chatid** **userid** remotely unban a user from a chat
+- /rban **userid** **chatid** remotely ban a user from a chat
+- /runban **userid** **chatid** remotely unban a user from a chat
 - /Stats: check bot's stats
 - /chatlist: get chatlist
 - /gbanlist: get gbanned users list
