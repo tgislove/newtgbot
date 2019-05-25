@@ -107,8 +107,8 @@ __help__ = """
 - /banall: Ban all members from a chat
 - /leavechat **chatid** : leave a chat
 **Sudo/owner only:**
-- /quickscope **chatid** **userid**: Ban user from chat.
-- /quickunban **chatid** **userid**: Unban user from chat.
+- /quickscope **userid** **chatid**: Ban user from chat.
+- /quickunban **userid** **chatid**: Unban user from chat.
 - /snipe **chatid** **string**: Make me send a message to a specific chat.
 - /rban **chatid** **userid** remotely ban a user from a chat
 - /runban **chatid** **userid** remotely unban a user from a chat
