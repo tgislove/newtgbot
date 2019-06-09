@@ -9,7 +9,7 @@
     "manager",
     "3"
   ],
-  "repository": "https://github.com/D30N/ChinnuBot",
+  "repository": "http://github.com/PaulSonOfLars/tgbot",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable env variables",
@@ -21,11 +21,11 @@
     },
     "OWNER_ID": {
       "description": "An integer of consisting of your owner ID",
-      "value": "694793777"
+      "value": "254318997"
     },
     "OWNER_USERNAME": {
       "description": "Your username",
-      "value": "JinsoRaj"
+      "value": "SonOfLars"
     },
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode messages",
