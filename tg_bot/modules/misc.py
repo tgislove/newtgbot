@@ -112,8 +112,29 @@ HIT = (
     "തൊഴിച്ചു",
 )
 
+GREETING = (
+    "Yes?",
+    "Yo!",
+    "Hiya!",
+    "It’s nice to meet you",
+    "Sup",
+    "Hi",
+    "What's up?",
+)
+
+
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 GMAPS_TIME = "https://maps.googleapis.com/maps/api/timezone/json"
+
+@run_async
+def greet(update: Update, context: CallbackContext):
+    args = update.effective_message.text.split(None, 1)
+    if len(args) >= 2:
+        reason = args[1]
+    else:
+        reason = ""
+
+    update.effective_message.reply_text(random.choice(GREETING))
 
 
 @run_async
