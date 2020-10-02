@@ -65,8 +65,11 @@ def reply_afk(bot: Bot, update: Update):
                 else:
                     res = "{} ഇപ്പോൾ കീബോർഡിൽ നിന്നും അകലെ ആണ് ! കാരണം :\n{}. ".format(fst_name, user.reason)
                 message.reply_text(res)
+                
+def __gdpr__(user_id):
+    sql.rm_afk(user_id)                
 
-
+    
 __help__ = """
  - /afk <reason>: mark yourself as AFK.
  - brb <reason>: same as the afk command - but not a command.
